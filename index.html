@@ -1,0 +1,410 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <meta name="theme-color" content="#faf7f0" />
+    <meta
+      name="description"
+      content="Create a thoughtful event page, organize an agenda, and manage local RSVPs. A complete browser-based event launch kit."
+    />
+    <title>Gatherly — Bring your people together</title>
+    <link rel="stylesheet" href="base.css" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+    <a class="skip-link" href="#main">Skip to event</a>
+    <div class="studio-bar">
+      <span
+        ><b>gatherly studio</b><span class="studio-divider">/</span>Your event,
+        taking shape</span
+      >
+      <div class="row">
+        <button id="preview-tab" class="studio-tab active">Event page</button
+        ><button id="settings-tab" class="studio-tab">Edit event</button
+        ><button id="attendees-tab" class="studio-tab">
+          Attendees <span id="attendee-tab-count">0</span>
+        </button>
+      </div>
+      <span class="local-badge">● Local workspace</span>
+    </div>
+    <main id="main">
+      <section id="preview-panel">
+        <nav class="event-nav" aria-label="Event navigation">
+          <a class="brand" href="#main"
+            ><span class="brand-mark">✳</span> gatherly<span class="brand-dot"
+              >.</span
+            ></a
+          >
+          <div class="nav-links">
+            <a href="#about">The gathering</a><a href="#speakers">The people</a
+            ><a href="#agenda">The day</a>
+          </div>
+          <button class="primary rsvp-open">Save your seat ↗</button>
+        </nav>
+        <section class="hero">
+          <div class="hero-copy">
+            <div class="event-eyebrow">
+              <span></span> GOOD PEOPLE. FRESH PERSPECTIVES.
+            </div>
+            <h1 id="event-title"></h1>
+            <p id="event-tagline"></p>
+            <div class="row hero-actions">
+              <button class="primary rsvp-open">
+                I’m in. Save my seat <span>↗</span></button
+              ><button id="calendar-button" class="calendar-button">
+                ＋ Add to calendar
+              </button>
+            </div>
+            <div class="hero-social">
+              <div class="mini-avatars">
+                <span>MC</span><span>AR</span><span>JE</span>
+              </div>
+              <span id="seat-hint"></span>
+            </div>
+          </div>
+          <div class="hero-art" aria-hidden="true">
+            <div class="orbit orbit-one"></div>
+            <div class="orbit orbit-two"></div>
+            <span class="spark spark-one">✳</span
+            ><span class="spark spark-two">✳</span>
+            <div class="back-ticket">
+              <span>YOU BELONG HERE</span>
+              <div>↗</div>
+            </div>
+            <div class="front-ticket">
+              <div class="ticket-top">
+                A LITTLE CURIOSITY<br />GOES A LONG WAY <span>✦</span>
+              </div>
+              <svg viewBox="0 0 200 130">
+                <g fill="none" stroke="#d7b7fb" stroke-width="1.2">
+                  <path
+                    d="M100 115V12M100 115L25 24M100 115L50 17M100 115L75 12M100 115L125 12M100 115L150 17M100 115L175 24M100 115L15 48M100 115L185 48M100 115L8 74M100 115L192 74M100 115L5 99M100 115L195 99"
+                  />
+                  <ellipse cx="100" cy="115" rx="95" ry="12" />
+                </g>
+              </svg>
+              <div class="ticket-message">
+                Room for<br />possibility<span>.</span>
+              </div>
+              <div class="ticket-bottom">
+                <span>COME AS YOU ARE.</span><span>↗</span>
+              </div>
+            </div>
+            <span class="art-note">a day worth showing up for</span>
+          </div>
+        </section>
+        <section class="event-facts">
+          <div>
+            <span class="fact-icon">◷</span>
+            <div>
+              <span class="fact-label">MARK THE DAY</span
+              ><strong id="event-date"></strong><small id="event-time"></small>
+            </div>
+          </div>
+          <div>
+            <span class="fact-icon">⌖</span>
+            <div>
+              <span class="fact-label">FIND YOUR WAY</span
+              ><strong id="event-location"></strong
+              ><small id="event-address"></small>
+            </div>
+          </div>
+          <div>
+            <span class="fact-icon">✳</span>
+            <div>
+              <span class="fact-label">MAKE IT YOURS</span
+              ><strong>Curiosity is the only prerequisite.</strong
+              ><small id="capacity-label"></small>
+            </div>
+          </div>
+        </section>
+        <section class="about-section" id="about">
+          <div>
+            <span class="eyebrow">A SPACE FOR THE WHAT-IFS</span>
+            <h2>Some ideas need<br />a little company.</h2>
+          </div>
+          <div>
+            <p id="event-description"></p>
+            <div class="host-line">
+              <span class="host-mark">g.</span
+              ><span
+                >Thoughtfully hosted by <strong id="event-organizer"></strong
+              ></span>
+            </div>
+          </div>
+        </section>
+        <section class="speakers-section" id="speakers">
+          <div class="section-heading">
+            <div>
+              <span class="eyebrow">THE PEOPLE WHO GET IT</span>
+              <h2>A few minds worth meeting.</h2>
+            </div>
+            <p>
+              Different paths. Shared curiosity.<br />Real conversations, all
+              day long.
+            </p>
+          </div>
+          <div id="speakers-grid" class="speakers-grid"></div>
+        </section>
+        <section class="agenda-section" id="agenda">
+          <div class="agenda-intro">
+            <span class="eyebrow"
+              >A LITTLE STRUCTURE. LOTS OF POSSIBILITY.</span
+            >
+            <h2>A day to<br />lean into.</h2>
+            <p>Space to listen, make, pause,<br />and see what happens next.</p>
+            <span class="timezone-note">All times shown in UTC</span>
+          </div>
+          <div id="agenda-list" class="agenda-list"></div>
+        </section>
+        <section class="closing-cta">
+          <span>✳</span>
+          <div>
+            <h2>Your next good idea might start here.</h2>
+            <p>Bring your curiosity. We’ll make room.</p>
+          </div>
+          <button class="primary rsvp-open">Count me in ↗</button>
+        </section>
+        <footer class="event-footer">
+          <a class="brand" href="#main"
+            >gatherly<span class="brand-dot">.</span></a
+          ><span id="footer-organizer"></span>
+          <div class="row">
+            <button id="share-button">Copy event link ↗</button
+            ><button id="print-button">Print flyer ↓</button>
+          </div>
+        </footer>
+        <p class="local-notice">
+          This is a local event kit. RSVPs are saved only in this browser. No
+          email is sent. The sample event, venue, and speakers are fictional.
+        </p>
+      </section>
+      <section id="settings-panel" class="studio-page" hidden>
+        <div class="studio-heading">
+          <div>
+            <span class="eyebrow">MAKE IT YOURS</span>
+            <h1>Set the scene.</h1>
+            <p class="muted">
+              A few thoughtful details turn a date into a gathering.
+            </p>
+          </div>
+          <button id="settings-preview">View event ↗</button>
+        </div>
+        <form id="settings-form" class="settings-layout">
+          <section class="panel">
+            <h2>The essentials</h2>
+            <label
+              >Event title<input name="title" required maxlength="90" /></label
+            ><label
+              >A one-line invitation<input
+                name="tagline"
+                required
+                maxlength="140" /></label
+            ><label
+              >About your gathering<textarea
+                name="description"
+                required
+                maxlength="2000"
+                rows="5"
+              ></textarea>
+            </label>
+            <div class="form-grid">
+              <label
+                >Starts at (UTC)<input
+                  name="start"
+                  type="datetime-local"
+                  required /></label
+              ><label
+                >Ends at (UTC)<input
+                  name="end"
+                  type="datetime-local"
+                  required /></label
+              ><label
+                >Venue name<input
+                  name="location"
+                  required
+                  maxlength="100" /></label
+              ><label
+                >Address<input name="address" required maxlength="200" /></label
+              ><label
+                >Organizer<input
+                  name="organizer"
+                  required
+                  maxlength="90" /></label
+              ><label
+                >Organizer email<input
+                  name="email"
+                  type="email"
+                  required
+                  maxlength="160" /></label
+              ><label
+                >Capacity<input
+                  name="capacity"
+                  type="number"
+                  min="1"
+                  max="10000"
+                  required
+              /></label>
+            </div>
+          </section>
+          <div class="grid">
+            <section class="panel">
+              <h2>The people</h2>
+              <p class="muted">One speaker per line: name | role</p>
+              <label
+                ><span class="sr-only">Speakers</span
+                ><textarea name="speakers" rows="5" required></textarea>
+              </label>
+            </section>
+            <section class="panel">
+              <h2>The day</h2>
+              <p class="muted">
+                One session per line: HH:MM | title | description<br />Use
+                24-hour UTC times.
+              </p>
+              <label
+                ><span class="sr-only">Agenda</span
+                ><textarea name="agenda" rows="9" required></textarea>
+              </label>
+            </section>
+          </div>
+          <div class="settings-save">
+            <p id="settings-error" role="alert"></p>
+            <span class="muted">Changes are saved to this browser.</span
+            ><button type="submit" class="primary">
+              Save event details ↗
+            </button>
+          </div>
+        </form>
+        <section class="panel backup-panel">
+          <div>
+            <h2>Keep a copy.</h2>
+            <p class="muted">
+              Your event and attendee list can travel with you.
+            </p>
+          </div>
+          <div class="row wrap">
+            <button id="export-backup">↓ Download backup</button
+            ><button id="import-backup">↥ Restore backup</button
+            ><input
+              class="sr-only"
+              type="file"
+              id="backup-file"
+              accept=".json,application/json"
+            /><button id="reset-event">Reset sample event</button>
+          </div>
+        </section>
+      </section>
+      <section id="attendees-panel" class="studio-page" hidden>
+        <div class="studio-heading">
+          <div>
+            <span class="eyebrow">GOOD COMPANY STARTS HERE</span>
+            <h1>Your people.</h1>
+            <p class="muted">
+              RSVPs saved in this browser for the current event.
+            </p>
+          </div>
+          <button id="attendees-export">↓ Export attendees CSV</button>
+        </div>
+        <div class="attendee-stats" id="attendee-stats"></div>
+        <div class="panel">
+          <div class="row spread wrap">
+            <h2>The guest list</h2>
+            <input
+              type="search"
+              id="attendee-search"
+              placeholder="Find a name or email…"
+              aria-label="Search attendees"
+            />
+          </div>
+          <div id="attendee-table" class="table-scroll"></div>
+        </div>
+        <p class="local-notice">
+          This list is stored on this device only. A shared event link shares
+          event details; it does not combine RSVP lists across browsers.
+        </p>
+      </section>
+    </main>
+    <dialog id="rsvp-dialog" aria-labelledby="rsvp-title">
+      <form id="rsvp-form">
+        <button
+          type="button"
+          id="rsvp-close"
+          class="close-button"
+          aria-label="Close RSVP"
+        >
+          ×</button
+        ><span class="eyebrow">THERE’S A PLACE FOR YOU</span>
+        <h2 id="rsvp-title">A good day starts with yes.</h2>
+        <p class="muted" id="rsvp-event-title"></p>
+        <label
+          >Your name<input
+            name="name"
+            autocomplete="name"
+            required
+            maxlength="100"
+            placeholder="What should we call you?" /></label
+        ><label
+          >Email address<input
+            name="email"
+            type="email"
+            autocomplete="email"
+            required
+            maxlength="160"
+            placeholder="you@example.com" /></label
+        ><label
+          >Anything that helps you feel welcome?
+          <span class="optional">Optional</span
+          ><textarea
+            name="note"
+            maxlength="500"
+            placeholder="Access needs or something you’d like us to know."
+          ></textarea>
+        </label>
+        <p class="rsvp-local">
+          Your RSVP is saved only in this browser. This does not notify the
+          organizer or send a confirmation email.
+        </p>
+        <p id="rsvp-error" role="alert"></p>
+        <button type="submit" class="primary">
+          Save RSVP in this browser ↗
+        </button>
+      </form>
+      <div id="rsvp-success" hidden>
+        <span class="success-icon">✳</span>
+        <h2>You’re on this guest list.</h2>
+        <p>
+          Your RSVP is saved in this browser. Add the event to your calendar so
+          the details are easy to find.
+        </p>
+        <button id="success-calendar" class="primary">
+          ↓ Download calendar invite</button
+        ><button id="success-close">Back to the gathering</button>
+      </div>
+    </dialog>
+    <dialog id="confirm-dialog" aria-labelledby="confirm-title">
+      <h2 id="confirm-title">Confirm change</h2>
+      <p id="confirm-message"></p>
+      <div class="row">
+        <button id="confirm-cancel">Cancel</button
+        ><button id="confirm-yes" class="primary">Confirm</button>
+      </div>
+    </dialog>
+    <dialog id="share-dialog" aria-labelledby="share-title">
+      <h2 id="share-title">Your event link</h2>
+      <p>
+        Copy this link to share the event details. RSVP lists stay in each
+        visitor’s browser.
+      </p>
+      <label
+        >Event link<textarea
+          id="share-link"
+          readonly
+          rows="4"
+        ></textarea></label
+      ><button id="share-close">Done</button>
+    </dialog>
+    <script type="module" src="app.js"></script>
+  </body>
+</html>
